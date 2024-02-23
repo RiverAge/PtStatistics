@@ -34,7 +34,7 @@ def ttg(cookie):
           download = span[5].xpath('./a')[0].text.split(' ')[0]
           return [ratio, upload, download]
 def main(argv):
-  print("argv1", argv[1], "argv2", argv[2])
+  print("argv1", argv])
   r1 = u2(argv[1])
   r2 = ttg(argv[2])
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2)
