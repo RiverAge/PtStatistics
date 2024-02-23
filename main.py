@@ -12,7 +12,6 @@ def u2(cookie):
         else:
           content = f.read().decode('utf-8')
           tree = etree.HTML(content)
-          print('content', content)
           ratio = tree.xpath('//span[@class="color_ratio"]')[0].tail.strip();
           upload = tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip().split(' ')[0];
           downloaded = tree.xpath('//span[@class="color_downloaded"]')[0].tail.strip().split(' ')[0];
@@ -33,7 +32,7 @@ def ttg(cookie):
           download = span[5].xpath('./a')[0].text.split(' ')[0]
           return [ratio, upload, download]
 def main(argv):
-
+  print(argv[1], argv[2])
   r1 = u2(argv[1])
   r2 = ttg(argv[2])
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2)
