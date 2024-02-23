@@ -1,4 +1,6 @@
 name:  Auto Sign
+permissions:
+  contents: write
 on:
   push:
     branches:
@@ -17,6 +19,6 @@ jobs:
         git config --global user.email "riverage@163.com"
         git config --global user.name "github actions"
         git add .
-        git commit -m 'update'
+        git commit -m  "update @`TZ=Asia/Shanghai date "+%Y-%m-%d %H:%M:%S"`"
         git push
     
