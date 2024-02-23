@@ -13,7 +13,7 @@ jobs:
         python-version: 'pypy3.9' 
     - run: |
         pip install lxml
-        python main.py "${{ secrets.U2_COOKIE }} ${{ secrets.TTG_COOKIE}}"
+        python main.py "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_COOKIE}}"
         ls -alsh
         git add .
         git commit -m 'update'
