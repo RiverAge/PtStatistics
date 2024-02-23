@@ -1,4 +1,4 @@
-name:  Auto Sign
+name:  Auto Statistics
 permissions:
   contents: write
 on:
