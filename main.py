@@ -11,6 +11,7 @@ def u2(cookie):
           return [0, 0, 0]
         else:
           content = f.read().decode('utf-8')
+          print('content', content)
           tree = etree.HTML(content)
           ratio = tree.xpath('//span[@class="color_ratio"]')[0].tail.strip();
           upload = tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip().split(' ')[0];
@@ -25,6 +26,7 @@ def ttg(cookie):
            return [0, 0, 0]
         else:
           content = f.read().decode('utf-8')
+          print('content', content)
           tree = etree.HTML(content)
           span = tree.xpath('//td[@class="bottom"]/span[@class="smallfont"][1]/font')
           ratio = span[1].text
