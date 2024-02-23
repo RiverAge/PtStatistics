@@ -1,7 +1,8 @@
 name:  Auto Sign
 on:
-  schedule:
-    - cron: 0 1 * * *
+  push:
+    branches:
+    - main
 jobs:
   build:
     runs-on: ubuntu-latest
