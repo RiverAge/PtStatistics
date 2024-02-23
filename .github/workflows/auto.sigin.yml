@@ -14,7 +14,8 @@ jobs:
     - run: |
         pip install lxml
         python main.py "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_COOKIE}}"
-        ls -alsh
+        git config --global user.email "riverage@163.com"
+        git config --global user.name "github actions"
         git add .
         git commit -m 'update'
         git push
