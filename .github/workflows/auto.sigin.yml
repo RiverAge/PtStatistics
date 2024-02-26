@@ -3,7 +3,7 @@ permissions:
   contents: write
 on:
   schedule:
-    - cron: 0 0 * * *
+    - cron: 0 2 * * *
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
         python-version: 'pypy3.9' 
     - run: |
         pip install lxml
-        python main.py "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_COOKIE}}"
+        python main.py "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_COOKIE}}" "${{ secrets.PTER_COOKIE}}"
         git config --global user.email "riverage@163.com"
         git config --global user.name "github actions"
         git add .
