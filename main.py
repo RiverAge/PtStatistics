@@ -14,8 +14,8 @@ def toTB(string):
   if parts[1] == 'KB' or parts[1] == 'KiB':
     return str(float(parts[0]) / 1024 / 1024 / 1024)
   
-def u2(cookie):
-  req = request.Request('https://u2.dmhy.org')
+def u2(url, cookie):
+  req = request.Request(url)
   req.add_header('cookie', cookie)
   with request.urlopen(req) as f:
         if f.status != 200:
@@ -27,8 +27,8 @@ def u2(cookie):
           upload = toTB(tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip());
           downloaded = toTB(tree.xpath('//span[@class="color_downloaded"]')[0].tail.strip());
           return [ratio, upload, downloaded]
-def ttg(cookie):
-  req = request.Request('https://totheglory.im')
+def ttg(url, cookie):
+  req = request.Request(url)
   req.add_header('user-agent', 'python urllib')
   req.add_header('cookie', cookie)
   with request.urlopen(req) as f:
@@ -43,8 +43,8 @@ def ttg(cookie):
           download = toTB(span[5].xpath('./a')[0].text)
           return [ratio, upload, download]
 
-def pter(cookie):
-  req = request.Request('https://pterclub.com')
+def pter(url, cookie):
+  req = request.Request(url)
   req.add_header('cookie', cookie)
   req.add_header('user-agent', 'python urllib')
   with request.urlopen(req) as f:
@@ -59,9 +59,9 @@ def pter(cookie):
           return [ratio, upload, downloaded]  
 
 def main(argv):
-  r1 = u2(argv[1])
-  r2 = ttg(argv[2])
-  r3 = pter(argv[3])
+  r1 = u2(argv[1], argv[2])
+  r2 = ttg(argv[3], argv[4])
+  r3 = pter(argv[5], argv[6])
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3)
   with open('data.txt', 'a') as file:
      file.write(r + '\n');
