@@ -70,11 +70,11 @@
 
         const u2Upload = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[1])
         const ttgUpload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[1])
-        const pterUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[1] || '0').map((e) => parseFloat(e) * 1024)
-
+        const pterUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[1] || '0')
+        
         const u2Download = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[2])
         const ttgDownload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[2])
-        const pterDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[2] || '0').map((e) => parseFloat(e) * 1024)
+        const pterDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[2] || '0')
 
         console.log('pterUpload',pterUpload)
         console.log('pterDownload',pterDownload)
