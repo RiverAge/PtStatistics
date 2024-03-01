@@ -26,7 +26,8 @@ def u2(url, cookie):
           ratio = tree.xpath('//span[@class="color_ratio"]')[0].tail.strip();
           upload = toTB(tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip());
           downloaded = toTB(tree.xpath('//span[@class="color_downloaded"]')[0].tail.strip());
-          return [ratio, upload, downloaded]
+          point = tree.xpath('//span[@class="ucoin-symbol ucoin-gold"]')[0].text.strip();
+          return [ratio, upload, downloaded, point]
 def ttg(url, cookie):
   req = request.Request(url)
   req.add_header('user-agent', 'python urllib')
@@ -37,11 +38,12 @@ def ttg(url, cookie):
         else:
           content = f.read().decode('utf-8')
           tree = etree.HTML(content)
-          span = tree.xpath('//td[@class="bottom"]/span[@class="smallfont"][1]/font')
-          ratio = span[1].text
-          upload = toTB(span[3].xpath('./a')[0].text)
-          download = toTB(span[5].xpath('./a')[0].text)
-          return [ratio, upload, download]
+          font = tree.xpath('//td[@class="bottom"]/span[@class="smallfont"][1]/font')
+          ratio = font[1].text
+          upload = toTB(font[3].xpath('./a')[0].text)
+          download = toTB(font[5].xpath('./a')[0].text)
+          point = tree.xpath('//td[@class="bottom"]/a')[0].text
+          return [ratio, upload, download, point]
 
 def pter(url, cookie):
   req = request.Request(url)
@@ -56,7 +58,8 @@ def pter(url, cookie):
           ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
           upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
           downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
-          return [ratio, upload, downloaded]  
+          point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
+          return [ratio, upload, downloaded, point]  
 
 def main(argv):
   r1 = u2(argv[1], argv[2])
