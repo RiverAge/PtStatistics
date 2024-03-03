@@ -76,8 +76,6 @@
         const ttgDownload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[2])
         const pterDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[2] || '0')
 
-        console.log('pterUpload',pterUpload)
-        console.log('pterDownload',pterDownload)
         const sRatio = [
           {
             type: 'line',
@@ -168,8 +166,8 @@
               const str = (new Array(v.length / 3).fill('')).map((e, idx) => `<section style="border-color: ${v[idx].color}; color: ${v[idx].color}">
                                                                               <p>${v[idx].seriesName}</p>
                                                                               <st>上传：<strong>${transform(v[idx].data)}</strong></p>
-                                                                                <p>下载：<strong>${transform(v[idx + 3].data)}</strong></p>
-                                                                                <p>分享率：<strong>${v[idx + 6].data}</strong></p>
+                                                                                <p>下载：<strong>${transform(v[idx + v.length / 3].data)}</strong></p>
+                                                                                <p>分享率：<strong>${v[idx + v.length / 3 * 2].data}</strong></p>
                                                                             </section>`).join('')
               return `<article><p>${v[0].name.slice(0, 4)}年${v[0].name.slice(4, 6)}月${v[0].name.slice(6)}日</p>${str}</article>`;
             }
