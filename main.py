@@ -5,7 +5,7 @@ from lxml import etree
 
 def toTB(string):
   parts = string.split(' ')
-  if parts[1] == 'TB' or parts[1] == 'TiB':
+  if parts[1] == 'TB' or parts[1] == 'TiB' or parts[1] == '烫':
     return parts[0]
   if parts[1] == 'GB' or parts[1] == 'GiB':
     return str(float(parts[0]) / 1024)
