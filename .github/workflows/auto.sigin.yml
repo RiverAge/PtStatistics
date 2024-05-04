@@ -14,7 +14,7 @@ jobs:
         python-version: 'pypy3.9' 
     - run: |
         pip install lxml
-        python main.py "${{ secrets.U2_URL }}" "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_URL }}" "${{ secrets.TTG_COOKIE}}" "${{ secrets.PTER_URL }}" "${{ secrets.PTER_COOKIE}}"
+        python main.py "${{ secrets.U2_URL }}" "${{ secrets.U2_COOKIE }}" "${{ secrets.TTG_URL }}" "${{ secrets.TTG_COOKIE}}" "${{ secrets.PTER_URL }}" "${{ secrets.PTER_COOKIE}}" "${{ secrets.MT_URL }}" "${{ secrets.MT_AUTH}}"
         git config --global user.email "riverage@163.com"
         git config --global user.name "github actions"
         git add .
