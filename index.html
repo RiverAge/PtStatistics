@@ -61,20 +61,23 @@
       .then((res) => res.text())
       .then((res) => {
         const months = []
-        const lines = res.split('\n').filter((e) => e)
+        const lines = res.split('\n').filter((e) => e).slice(-30)
         const days = lines.map((e) => e.slice(0, 8))
 
         const u2Ratio = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[0].slice(2))
         const ttgRatio = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[0].slice(2))
-        const pterClub = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[0].slice(2) || '0')
+        const pterRatio = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[0].slice(2) || '0')
+        const mtRatio = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[0].slice(2) || '0')
 
         const u2Upload = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[1])
         const ttgUpload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[1])
         const pterUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[1] || '0')
+        const mtUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[1] || '0')
         
         const u2Download = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[2])
         const ttgDownload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[2])
         const pterDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[2] || '0')
+        const mtDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[2] || '0')
 
         const sRatio = [
           {
@@ -93,7 +96,13 @@
             type: 'line',
             name: 'PTER',
             yAxisIndex: 1,
-            data: pterClub
+            data: pterRatio
+          },
+          {
+            type: 'line',
+            name: 'MT',
+            yAxisIndex: 1,
+            data: mtRatio
           }
         ]
 
@@ -128,6 +137,18 @@
                 color: '#ea7ccc'
               }
             }
+          },
+          {
+            type: 'bar',
+            name: 'MT',
+            barWidth: '10%',
+            stack: 'mt-total',
+            data: mtUpload,
+            itemStyle: {
+              normal: {
+                color: '#000'
+              }
+            }
           }
         ]
 
@@ -157,12 +178,20 @@
             barWidth: '10%',
             stack: 'pter-total',
             data: pterDownload
+          },
+          {
+            type: 'bar',
+            name: 'MT',
+            barWidth: '10%',
+            stack: 'mt-total',
+            data: mtDownload
           }
         ]
         const option = {
           tooltip: {
             trigger: 'axis',
             formatter: (v) => {
+              const LEN = sRatio.length;
               const str = (new Array(v.length / 3).fill('')).map((e, idx) => `<section style="border-color: ${v[idx].color}; color: ${v[idx].color}">
                                                                               <p>${v[idx].seriesName}</p>
                                                                               <st>上传：<strong>${transform(v[idx].data)}</strong></p>
@@ -201,7 +230,7 @@
           series: [
             ...sUpload,
             ...sDownload,
-            ...sRatio
+            ...sRatio,
           ]
         };
         const ins = echarts.init(document.getElementsByTagName('main')[0])
