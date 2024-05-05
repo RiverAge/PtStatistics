@@ -64,7 +64,7 @@ def pter(url, cookie):
           return [ratio, upload, downloaded, point]  
 
 def mt_updateLastBrowse(url, authorization):          
-  req = request.Request(url, method="POST")
+  req = request.Request(url + '/updateLastBrowse', method="POST")
   req.add_header('authorization', authorization)
   req.add_header('user-agent', 'python urllib')
   req.add_header('content-type', 'multipart/form-data; boundary=----WebKitFormBoundary8EfqYPoNFf8YBSdt')
@@ -72,7 +72,7 @@ def mt_updateLastBrowse(url, authorization):
     content = f.read().decode('utf-8')
 
 def mt(url, authorization):
-  mt_updateLastBrowse('/updateLastBrowse')
+  mt_updateLastBrowse(url, authorization)
   req = request.Request(url + '/profile', method="POST")
   req.add_header('authorization', authorization)
   req.add_header('user-agent', 'python urllib')
