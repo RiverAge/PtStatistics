@@ -94,6 +94,7 @@ def main(argv):
   r2 = ttg(argv[3], argv[4])
   r3 = pter(argv[5], argv[6])
   r4 = mt(argv[7], argv[8])
+  print(r1, r2, r3, r4)
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3) + " m:" + "|".join(r4)
   print(r1, r2, r3, r4)
   # with open('data.txt', 'a') as file:
