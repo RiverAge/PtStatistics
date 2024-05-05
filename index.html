@@ -47,11 +47,11 @@
     if (parseFloat(val) > 1) {
       return val + ' TB'
     } else if (parseFloat(val) * 1024 > 1) {
-      return parseFloat(val) * 1024 + ' GB' 
+      return (parseFloat(val) * 1024).toFixed(2) + ' GB' 
     } else if (parseFloat(val) * 1024 * 1024 > 1) {
-      return parseFloat(val) * 1024 * 1024 + ' MB' 
+      return (parseFloat(val) * 1024 * 1024).toFixed(2) + ' MB' 
     } else if (parseFloat(val) * 1024 * 1024 * 1024 > 1) {
-      return parseFloat(val) * 1024 * 1024 * 1024 + ' KB' 
+      return (parseFloat(val) * 1024 * 1024 * 1024).toFixed(2) + ' KB' 
     } else {
       return parseFloat(val) * 1024 * 1024 * 1024 * 1024 + ' B' 
     }
