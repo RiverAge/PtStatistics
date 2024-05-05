@@ -86,7 +86,7 @@ def mt(url, authorization):
           ratio = resp['data']['memberCount']['shareRate']
           upload = toTB(str(int(resp['data']['memberCount']['uploaded']) / 1024) + ' KB')
           download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
-          point = resp['data']['memberCount']['bonus']
+          point = str(resp['data']['memberCount']['bonus'])
           return [ratio, upload, download, point]
 
 def main(argv):
@@ -94,11 +94,9 @@ def main(argv):
   r2 = ttg(argv[3], argv[4])
   r3 = pter(argv[5], argv[6])
   r4 = mt(argv[7], argv[8])
-  print(r1, r2, r3, r4)
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3) + " m:" + "|".join(r4)
-  print(r1, r2, r3, r4)
-  # with open('data.txt', 'a') as file:
-  #    file.write(r + '\n')
+  with open('data.txt', 'a') as file:
+     file.write(r + '\n')
   
 
 if __name__ == '__main__':
