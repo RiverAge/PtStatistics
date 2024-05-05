@@ -83,7 +83,7 @@ def mt(url, authorization):
         else:
           content = f.read().decode('utf-8')
           resp = json.loads(content)
-          ratio = resp['data']['memberCount']['shareRate']
+          ratio = str(resp['data']['memberCount']['shareRate'])
           upload = toTB(str(int(resp['data']['memberCount']['uploaded']) / 1024) + ' KB')
           download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
           point = str(resp['data']['memberCount']['bonus'])
