@@ -95,8 +95,9 @@ def main(argv):
   r3 = pter(argv[5], argv[6])
   r4 = mt(argv[7], argv[8])
   r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3) + " m:" + "|".join(r4)
-  with open('data.txt', 'a') as file:
-     file.write(r + '\n')
+  print(r1, r2, r3, r4)
+  # with open('data.txt', 'a') as file:
+  #    file.write(r + '\n')
   
 
 if __name__ == '__main__':
