@@ -75,7 +75,6 @@ def mt(url, authorization):
   req = request.Request(url + '/profile', method="POST")
   req.add_header('authorization', authorization)
   req.add_header('user-agent', 'python urllib')
-  req.add_header('content-type', 'multipart/form-data; boundary=----WebKitFormBoundaryRI8m3nQthwqqPTO9')
   with request.urlopen(req) as f:
         if f.status != 200:
           return [0, 0, 0]
