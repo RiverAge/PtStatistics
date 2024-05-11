@@ -4,7 +4,7 @@ permissions:
 on:
   push:
     branches:
-    - release
+    -  main
 # on:
 #   schedule:
 #     - cron: 0 2 * * *
