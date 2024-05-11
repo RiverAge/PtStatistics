@@ -2,8 +2,11 @@ name:  Auto Statistics
 permissions:
   contents: write
 on:
-  schedule:
-    - cron: 0 2 * * *
+  release:
+    main
+# on:
+#   schedule:
+#     - cron: 0 2 * * *
 jobs:
   build:
     runs-on: ubuntu-latest
