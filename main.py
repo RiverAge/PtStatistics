@@ -67,7 +67,6 @@ def mt_updateLastBrowse(url, authorization):
   req = request.Request(url + '/updateLastBrowse', method="POST")
   req.add_header('authorization', authorization)
   req.add_header('user-agent', 'python urllib')
-  req.add_header('content-type', 'multipart/form-data; boundary=----WebKitFormBoundary8EfqYPoNFf8YBSdt')
   with request.urlopen(req) as f:
     content = f.read().decode('utf-8')
 
