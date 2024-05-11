@@ -3,7 +3,8 @@ permissions:
   contents: write
 on:
   push:
-    main
+    branches:
+    - release
 # on:
 #   schedule:
 #     - cron: 0 2 * * *
