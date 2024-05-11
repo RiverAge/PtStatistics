@@ -2,7 +2,7 @@ name:  Auto Statistics
 permissions:
   contents: write
 on:
-  release:
+  push:
     main
 # on:
 #   schedule:
