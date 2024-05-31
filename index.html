@@ -45,7 +45,7 @@
 <script>
   function transform(val) {
     if (parseFloat(val) > 1) {
-      return val + ' TB'
+      return val.toFixed(2) + ' TB'
     } else if (parseFloat(val) * 1024 > 1) {
       return (parseFloat(val) * 1024).toFixed(2) + ' GB' 
     } else if (parseFloat(val) * 1024 * 1024 > 1) {
