@@ -81,6 +81,8 @@ def mt(url, authorization):
         else:
           content = f.read().decode('utf-8')
           resp = json.loads(content)
+          print('---->')
+          print(resp)
           ratio = str(resp['data']['memberCount']['shareRate'])
           upload = toTB(str(int(resp['data']['memberCount']['uploaded']) / 1024) + ' KB')
           download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
