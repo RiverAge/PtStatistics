@@ -48,20 +48,21 @@ def ttg(url, cookie):
           return [ratio, upload, download, point]
 
 def pter(url, cookie):
-  req = request.Request(url)
-  req.add_header('cookie', cookie)
-  req.add_header('user-agent', 'python urllib')
-  with request.urlopen(req) as f:
-        if f.status != 200:
-          return [0, 0, 0]
-        else:
-          content = f.read().decode('utf-8')
-          tree = etree.HTML(content)
-          ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
-          upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
-          downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
-          point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
-          return [ratio, upload, downloaded, point]  
+   return [1, 1, 1, 1] 
+  # req = request.Request(url)
+  # req.add_header('cookie', cookie)
+  # req.add_header('user-agent', 'python urllib')
+  # with request.urlopen(req) as f:
+  #       if f.status != 200:
+  #         return [0, 0, 0]
+  #       else:
+  #         content = f.read().decode('utf-8')
+  #         tree = etree.HTML(content)
+  #         ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
+  #         upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
+  #         downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
+  #         point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
+  #         return [ratio, upload, downloaded, point]  
 
 def mt_updateLastBrowse(url, authorization):          
   req = request.Request(url + '/updateLastBrowse', method="POST")
