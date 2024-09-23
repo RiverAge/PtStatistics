@@ -48,7 +48,7 @@ def ttg(url, cookie):
           return [ratio, upload, download, point]
 
 def pter(url, cookie):
-   return [1, 1, 1, 1] 
+   return ["1", "1", "1", "1"] 
   # req = request.Request(url)
   # req.add_header('cookie', cookie)
   # req.add_header('user-agent', 'python urllib')
