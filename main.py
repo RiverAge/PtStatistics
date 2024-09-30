@@ -1,8 +1,9 @@
+import json
 import sys
 import time
 from urllib import request
+
 from lxml import etree
-import json
 
 
 def toTB(string):
@@ -88,12 +89,30 @@ def mt(url, authorization):
           point = str(resp['data']['memberCount']['bonus'])
           return [ratio, upload, download, point]
 
+def haidan(url, cookie):
+  req = request.Request(url)
+  req.add_header('cookie', cookie)
+  req.add_header('user-agent', 'python urllib')
+  with request.urlopen(req) as f:
+        if f.status != 200:
+          return [0, 0, 0]
+        else:
+          content = f.read().decode('utf-8')
+          tree = etree.HTML(content)
+          ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
+          upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
+          downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
+          point = tree.xpath('//span[@id="magic_num"]')[0].text.split('(')[0]
+          return [ratio, upload, downloaded, point]  
+
+
 def main(argv):
   r1 = u2(argv[1], argv[2])
   r2 = ttg(argv[3], argv[4])
   r3 = pter(argv[5], argv[6])
   r4 = mt(argv[7], argv[8])
-  r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3) + " m:" + "|".join(r4)
+  r5 = haidan(argv[9], argv[10])
+  r = time.strftime("%Y%m%d", time.localtime()) + " u:" + "|".join(r1) + " t:" + "|".join(r2) + " p:" + "|".join(r3) + " m:" + "|".join(r4) + " h:" + "|".join(r5)
   with open('data.txt', 'a') as file:
      file.write(r + '\n')
   
