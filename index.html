@@ -68,16 +68,19 @@
         const ttgRatio = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[0].slice(2))
         const pterRatio = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[0].slice(2) || '0')
         const mtRatio = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[0].slice(2) || '0')
+        const hdRatio = lines.map((e) => (e.split(' ').find((e) => e.startsWith('h:')) || '').split('|')[0].slice(2) || '0')
 
         const u2Upload = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[1])
         const ttgUpload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[1])
         const pterUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[1] || '0')
         const mtUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[1] || '0')
+        const hdUpload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('h:')) || '').split('|')[1] || '0')
         
         const u2Download = lines.map((e) => e.split(' ').find((e) => e.startsWith('u:')).split('|')[2])
         const ttgDownload = lines.map((e) => e.split(' ').find((e) => e.startsWith('t:')).split('|')[2])
         const pterDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('p:')) || '').split('|')[2] || '0')
         const mtDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('m:')) || '').split('|')[2] || '0')
+        const hdDownload = lines.map((e) => (e.split(' ').find((e) => e.startsWith('h:')) || '').split('|')[2] || '0')
 
         const sRatio = [
           {
@@ -103,6 +106,12 @@
             name: 'MT',
             yAxisIndex: 1,
             data: mtRatio
+          },
+          {
+            type: 'line',
+            name: 'HD',
+            yAxisIndex: 1,
+            data: hdRatio
           }
         ]
 
@@ -149,6 +158,18 @@
                 color: '#000'
               }
             }
+          },
+          {
+            type: 'bar',
+            name: 'HD',
+            barWidth: '10%',
+            stack: 'hd-total',
+            data: hdUpload,
+            itemStyle: {
+              normal: {
+                color: '#ff0'
+              }
+            }
           }
         ]
 
@@ -185,6 +206,13 @@
             barWidth: '10%',
             stack: 'mt-total',
             data: mtDownload
+          },
+          {
+            type: 'bar',
+            name: 'HD',
+            barWidth: '10%',
+            stack: 'hd-total',
+            data: hdDownload
           }
         ]
         const option = {
