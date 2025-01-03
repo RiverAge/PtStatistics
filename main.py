@@ -24,13 +24,16 @@ def u2(url, cookie):
         if f.status != 200:
           return [0, 0, 0]
         else:
-          content = f.read().decode('utf-8')
-          tree = etree.HTML(content)
-          ratio = tree.xpath('//span[@class="color_ratio"]')[0].tail.strip();
-          upload = toTB(tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip());
-          downloaded = toTB(tree.xpath('//span[@class="color_downloaded"]')[0].tail.strip());
-          point = tree.xpath('//span[@class="ucoin-symbol ucoin-gold"]')[0].text.strip();
-          return [ratio, upload, downloaded, point]
+          try:
+            content = f.read().decode('utf-8')
+            tree = etree.HTML(content)
+            ratio = tree.xpath('//span[@class="color_ratio"]')[0].tail.strip();
+            upload = toTB(tree.xpath('//span[@class="color_uploaded"]')[0].tail.strip());
+            downloaded = toTB(tree.xpath('//span[@class="color_downloaded"]')[0].tail.strip());
+            point = tree.xpath('//span[@class="ucoin-symbol ucoin-gold"]')[0].text.strip();
+            return [ratio, upload, downloaded, point]
+          except:
+            return [0, 0, 0, 0]
 def ttg(url, cookie):
   req = request.Request(url)
   req.add_header('user-agent', 'python urllib')
@@ -39,17 +42,19 @@ def ttg(url, cookie):
         if f.status != 200:
            return [0, 0, 0]
         else:
-          content = f.read().decode('utf-8')
-          tree = etree.HTML(content)
-          font = tree.xpath('//td[@class="bottom"]/span[@class="smallfont"][1]/font')
-          ratio = font[1].text
-          upload = toTB(font[3].xpath('./a')[0].text)
-          download = toTB(font[5].xpath('./a')[0].text)
-          point = tree.xpath('//td[@class="bottom"]/a')[0].text
-          return [ratio, upload, download, point]
+          try:
+            content = f.read().decode('utf-8')
+            tree = etree.HTML(content)
+            font = tree.xpath('//td[@class="bottom"]/span[@class="smallfont"][1]/font')
+            ratio = font[1].text
+            upload = toTB(font[3].xpath('./a')[0].text)
+            download = toTB(font[5].xpath('./a')[0].text)
+            point = tree.xpath('//td[@class="bottom"]/a')[0].text
+            return [ratio, upload, download, point]
+          except:
+            return [0, 0, 0, 0]
 
 def pter(url, cookie):
-  return ["1", "1", "1", "1"] 
   req = request.Request(url)
   req.add_header('cookie', cookie)
   req.add_header('user-agent', 'python urllib')
@@ -57,13 +62,16 @@ def pter(url, cookie):
         if f.status != 200:
           return [0, 0, 0]
         else:
-          content = f.read().decode('utf-8')
-          tree = etree.HTML(content)
-          ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
-          upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
-          downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
-          point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
-          return [ratio, upload, downloaded, point]  
+          try:
+            content = f.read().decode('utf-8')
+            tree = etree.HTML(content)
+            ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
+            upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
+            downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
+            point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
+            return [ratio, upload, downloaded, point]
+          except:
+            return [0, 0, 0, 0]
 
 def mt_updateLastBrowse(url, authorization):          
   req = request.Request(url + '/updateLastBrowse', method="POST")
@@ -81,13 +89,16 @@ def mt(url, authorization):
         if f.status != 200:
           return [0, 0, 0]
         else:
-          content = f.read().decode('utf-8')
-          resp = json.loads(content)
-          ratio = str(resp['data']['memberCount']['shareRate'])
-          upload = toTB(str(int(resp['data']['memberCount']['uploaded']) / 1024) + ' KB')
-          download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
-          point = str(resp['data']['memberCount']['bonus'])
-          return [ratio, upload, download, point]
+          try:
+            content = f.read().decode('utf-8')
+            resp = json.loads(content)
+            ratio = str(resp['data']['memberCount']['shareRate'])
+            upload = toTB(str(int(resp['data']['memberCount']['uploaded']) / 1024) + ' KB')
+            download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
+            point = str(resp['data']['memberCount']['bonus'])
+            return [ratio, upload, download, point]
+          except:
+            return [0, 0, 0, 0]
 
 def haidan(url, cookie):
   req = request.Request(url)
@@ -97,13 +108,16 @@ def haidan(url, cookie):
         if f.status != 200:
           return [0, 0, 0]
         else:
-          content = f.read().decode('utf-8')
-          tree = etree.HTML(content)
-          ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
-          upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
-          downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
-          point = tree.xpath('//span[@id="magic_num"]')[0].text.split('(')[0]
-          return [ratio, upload, downloaded, point]  
+          try:
+            content = f.read().decode('utf-8')
+            tree = etree.HTML(content)
+            ratio = tree.xpath('//font[@class="color_ratio"]')[0].tail.strip();
+            upload = toTB(tree.xpath('//font[@class="color_uploaded"]')[0].tail.strip());
+            downloaded = toTB(tree.xpath('//font[@class="color_downloaded"]')[0].tail.strip());
+            point = tree.xpath('//span[@id="magic_num"]')[0].text.split('(')[0]
+            return [ratio, upload, downloaded, point]
+          except:
+            return [0, 0, 0, 0]
 
 
 def main(argv):
