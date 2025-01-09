@@ -22,7 +22,7 @@ def u2(url, cookie):
   req.add_header('cookie', cookie)
   with request.urlopen(req) as f:
         if f.status != 200:
-          return [0, 0, 0]
+          return ['0', '0', '0', '0']
         else:
           try:
             content = f.read().decode('utf-8')
@@ -33,14 +33,14 @@ def u2(url, cookie):
             point = tree.xpath('//span[@class="ucoin-symbol ucoin-gold"]')[0].text.strip();
             return [ratio, upload, downloaded, point]
           except:
-            return [0, 0, 0, 0]
+            return ['0', '0', '0', '0']
 def ttg(url, cookie):
   req = request.Request(url)
   req.add_header('user-agent', 'python urllib')
   req.add_header('cookie', cookie)
   with request.urlopen(req) as f:
         if f.status != 200:
-           return [0, 0, 0]
+           return ['0', '0', '0', '0']
         else:
           try:
             content = f.read().decode('utf-8')
@@ -52,7 +52,7 @@ def ttg(url, cookie):
             point = tree.xpath('//td[@class="bottom"]/a')[0].text
             return [ratio, upload, download, point]
           except:
-            return [0, 0, 0, 0]
+            return ['0', '0', '0', '0']
 
 def pter(url, cookie):
   req = request.Request(url)
@@ -60,7 +60,7 @@ def pter(url, cookie):
   req.add_header('user-agent', 'python urllib')
   with request.urlopen(req) as f:
         if f.status != 200:
-          return [0, 0, 0]
+          return ['0', '0', '0', '0']
         else:
           try:
             content = f.read().decode('utf-8')
@@ -71,7 +71,7 @@ def pter(url, cookie):
             point = tree.xpath('//span[@class="medium"]/span[@class="color_bonus"]')[0].tail.strip()
             return [ratio, upload, downloaded, point]
           except:
-            return [0, 0, 0, 0]
+            return ['0', '0', '0', '0']
 
 def mt_updateLastBrowse(url, authorization):          
   req = request.Request(url + '/updateLastBrowse', method="POST")
@@ -87,7 +87,7 @@ def mt(url, authorization):
   req.add_header('user-agent', 'python urllib')
   with request.urlopen(req) as f:
         if f.status != 200:
-          return [0, 0, 0]
+          return ['0', '0', '0', '0']
         else:
           try:
             content = f.read().decode('utf-8')
@@ -98,7 +98,7 @@ def mt(url, authorization):
             point = str(resp['data']['memberCount']['bonus'])
             return [ratio, upload, download, point]
           except:
-            return [0, 0, 0, 0]
+            return ['0', '0', '0', '0']
 
 def haidan(url, cookie):
   req = request.Request(url)
@@ -106,7 +106,7 @@ def haidan(url, cookie):
   req.add_header('user-agent', 'python urllib')
   with request.urlopen(req) as f:
         if f.status != 200:
-          return [0, 0, 0]
+          return ['0', '0', '0', '0']
         else:
           try:
             content = f.read().decode('utf-8')
@@ -117,7 +117,7 @@ def haidan(url, cookie):
             point = tree.xpath('//span[@id="magic_num"]')[0].text.split('(')[0]
             return [ratio, upload, downloaded, point]
           except:
-            return [0, 0, 0, 0]
+            return ['0', '0', '0', '0']
 
 
 def main(argv):
