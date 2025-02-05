@@ -97,7 +97,8 @@ def mt(url, authorization):
             download = toTB(str(int(resp['data']['memberCount']['downloaded']) / 1024) + ' KB')
             point = str(resp['data']['memberCount']['bonus'])
             return [ratio, upload, download, point]
-          except:
+          except Exception as e:
+                    print("Error while processing response data:", e)
             return ['0', '0', '0', '0']
 
 def haidan(url, cookie):
