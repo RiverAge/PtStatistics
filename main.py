@@ -98,7 +98,7 @@ def mt(url, authorization):
             point = str(resp['data']['memberCount']['bonus'])
             return [ratio, upload, download, point]
           except Exception as e:
-                    print("Error while processing response data:", e)
+            print("Error while processing response data:", e)
             return ['0', '0', '0', '0']
 
 def haidan(url, cookie):
